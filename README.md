@@ -162,19 +162,7 @@ NeuroChainX/
 
 ---
 
-##  License
 
-This project is proprietary and confidential.
-
----
-
-##  Support
-
-- **Internal Issues**: Contact development team
-- **Setup Problems**: Reach out to team lead
-- **Access Issues**: Verify credentials with admin
-
----
 
 <div align="center">
 
