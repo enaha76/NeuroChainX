@@ -1,50 +1,12 @@
 # 🗑️ BinSnap - Smart Waste Management System
 
-## 🌟 Overview
+##  Overview
 
 **BinSnap** is a smart waste management application built with React and Node.js, featuring blockchain integration for data integrity.
 
 ---
 
-##  Resources
-
-### Core Technologies
-- [Hedera Consensus Service (HCS) docs](https://docs.hedera.com/guides/hedera-services/consensus)  
-- [Hedera Token Service (HTS) docs](https://docs.hedera.com/guides/hedera-services/token)  
-- [@hashgraph/sdk (TypeScript/JavaScript)](https://github.com/hashgraph/hedera-sdk-js)  
-
-### ML / Image Processing & AI Microservice
-- [OpenRouter AI API (multimodal image–text)](https://openrouter.ai/docs)  
-- [Express.js Routing Guide](https://expressjs.com/en/guide/routing.html)  
-- [Axios HTTP Client](https://axios-http.com/docs/intro)  
-- [dotenv (managing env vars & secrets)](https://github.com/motdotla/dotenv)  
-- [Node.js Buffer (Base64 encoding)](https://nodejs.org/api/buffer.html#bufferbuffersfromstring-encoding)  
-
-### Frontend
-- [React (Web)](https://reactjs.org/docs/getting-started.html)  
-- [Tailwind CSS](https://tailwindcss.com/)  
-- [shadcn/ui component library](https://ui.shadcn.com/)  
-
-### Backend & Storage
-- [Node.js + Express.js](https://nodejs.org/ • https://expressjs.com/)  
-- [IPFS (off-chain storage)](https://docs.ipfs.tech/)  
-- [Arweave (permanent storage)](https://docs.arweave.org/)  
-
-### DevOps & CI/CD
-- [Docker best practices](https://docs.docker.com/develop/)  
-- [GitHub Actions for CI](https://docs.github.com/actions)  
-
-### Testing & Reliability
-- [Jest (unit testing)](https://jestjs.io/)  
-- [Cypress (end-to-end testing)](https://www.cypress.io/)  
-- [Retry Logic in JavaScript](https://zellwk.com/blog/retry-with-javascript/)  
-
-### Architecture & Patterns
-- [Clean Architecture (Uncle Bob)](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)  
-- [Domain-Driven Design (Eric Evans)](https://domainlanguage.com/)
-
----
-
+##  Quick Start
 ##  Quick Start
 
 ### Prerequisites
@@ -53,20 +15,27 @@
 - **npm** >= 8.0.0
 
 ### Installation
+### Installation
 
 ```bash
+# Clone and install
+git clone <repo-url>
 # Clone and install
 git clone <repo-url>
 cd NeuroChainX
 
 # Backend
+# Backend
 cd binsnap-backend
 npm install
 
 # User Frontend
+# User Frontend
 cd ../user-frontend
 npm install
 
+# Admin Dashboard
+cd ../admin-dashboear-cibe-main
 # Admin Dashboard
 cd ../admin-dashboear-cibe-main
 npm install
@@ -86,16 +55,33 @@ PORT=3000
 ```
 
 ### Run Application
+### Configuration
+
+Create `.env` file in `binsnap-backend/` (contact team for credentials):
+
+```env
+HEDERA_NETWORK=testnet
+ACCOUNT_ID=
+PRIVATE_KEY=
+HCS_TOPIC_ID=
+HTS_TOKEN_ID=
+PORT=3000
+```
+
+### Run Application
 
 ```bash
+# Start backend (Terminal 1)
 # Start backend (Terminal 1)
 cd binsnap-backend
 npm run dev
 
 # Start user frontend (Terminal 2)
+# Start user frontend (Terminal 2)
 cd user-frontend
 npm run dev
 
+# Start admin dashboard (Terminal 3)
 # Start admin dashboard (Terminal 3)
 cd admin-dashboear-cibe-main
 npm run dev
@@ -111,7 +97,7 @@ npm run dev
 
 ---
 
-## Development
+## 🔧 Development
 
 ### Available Commands
 
@@ -174,11 +160,25 @@ NeuroChainX/
 - [ESLint](https://eslint.org) - Code quality
 - [Prettier](https://prettier.io) - Code formatting
 
+---
 
+##  License
 
+This project is proprietary and confidential.
+
+---
+
+##  Support
+
+- **Internal Issues**: Contact development team
+- **Setup Problems**: Reach out to team lead
+- **Access Issues**: Verify credentials with admin
+
+---
 
 <div align="center">
 
+**🌱 Built for sustainable waste management 🌍**
 **🌱 Built for sustainable waste management 🌍**
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)

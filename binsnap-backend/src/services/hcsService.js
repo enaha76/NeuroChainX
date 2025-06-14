@@ -39,53 +39,63 @@ class HCSService {
     }
 
     /**
-     * Ancrer les données BinSnap sur HCS
+     * Ancrer les données BinSnap sur HCS (optimized for 200 byte limit)
      */
-    async submitBinData(binData) {
-        try {
-            if (!this.topicId) {
-                throw new Error('Topic ID not set. Create topic first or set HCS_TOPIC_ID in .env');
-            }
-
-            const client = hederaClient.getClient();
-            
-            // Préparer le message (max 200 octets)
-            const message = JSON.stringify({
-                binId: binData.binId,
-                fillLevel: binData.fillLevel,
-                contamination: binData.contamination,
-                imageHash: binData.imageHash,
-                gps: binData.gps,
-                timestamp: binData.timestamp,
-                userId: binData.userId
-            });
-
-            // Vérifier la taille (200 octets max)
-            if (Buffer.byteLength(message, 'utf8') > 200) {
-                throw new Error(`Message too large: ${Buffer.byteLength(message, 'utf8')} bytes (max 200)`);
-            }
-
-            const transaction = new TopicMessageSubmitTransaction()
-                .setTopicId(this.topicId)
-                .setMessage(message);
-
-            const response = await transaction.execute(client);
-            const receipt = await response.getReceipt(client);
-            
-            console.log(`✅ Message submitted to topic. Sequence: ${receipt.topicSequenceNumber}`);
-            
-            return {
-                success: true,
-                topicId: this.topicId,
-                sequenceNumber: receipt.topicSequenceNumber,
-                transactionId: response.transactionId,
-                messageSize: Buffer.byteLength(message, 'utf8')
-            };
-        } catch (error) {
-            console.error('❌ Failed to submit message:', error);
-            throw error;
+  /**
+ * Alternative: Store only reference hash on HCS
+ */
+async submitBinData(binData) {
+    try {
+        if (!this.topicId) {
+            throw new Error('Topic ID not set. Create topic first or set HCS_TOPIC_ID in .env');
         }
+
+        const client = hederaClient.getClient();
+        
+        // Create a hash of the full data
+        const fullDataString = JSON.stringify(binData);
+        const crypto = require('crypto');
+        const dataHash = crypto.createHash('sha256').update(fullDataString).digest('hex').slice(0, 12);
+        
+        // Store only reference on HCS
+        const message = JSON.stringify({
+            hash: dataHash,
+            bin: binData.binId.slice(-6),
+            lvl: binData.fillLevel,
+            ts: Math.floor(Date.now() / 1000)
+        });
+
+        const messageSize = Buffer.byteLength(message, 'utf8');
+        console.log(`📏 Reference message size: ${messageSize} bytes`);
+        console.log(`📝 Reference message: ${message}`);
+
+        if (messageSize > 200) {
+            throw new Error(`Reference message too large: ${messageSize} bytes (max 200)`);
+        }
+
+        const transaction = new TopicMessageSubmitTransaction()
+            .setTopicId(this.topicId)
+            .setMessage(message);
+
+        const response = await transaction.execute(client);
+        const receipt = await response.getReceipt(client);
+        
+        console.log(`✅ Reference message submitted. Sequence: ${receipt.topicSequenceNumber}`);
+        
+        return {
+            success: true,
+            topicId: this.topicId,
+            sequenceNumber: receipt.topicSequenceNumber,
+            transactionId: response.transactionId,
+            messageSize: messageSize,
+            dataHash: dataHash,
+            messageType: 'reference'
+        };
+    } catch (error) {
+        console.error('❌ Failed to submit message:', error);
+        throw error;
     }
+}
 
     /**
      * Obtenir l'ID du topic

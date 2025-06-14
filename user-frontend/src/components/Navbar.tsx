@@ -25,7 +25,7 @@ export function Navbar() {
             <Recycle className="h-8 w-8 text-eco-600 relative z-10" />
           </div>
           <span className="font-display text-xl font-semibold text-gray-900">
-            Eco<span className="text-eco-600">Clean</span>
+            Bin<span className="text-eco-600">Snap</span>
           </span>
         </Link>
 
@@ -77,7 +77,7 @@ export function Navbar() {
               <div className="flex items-center space-x-2 mb-6">
                 <Recycle className="h-6 w-6 text-eco-600" />
                 <span className="font-display text-lg font-semibold">
-                  Eco<span className="text-eco-600">Clean</span>
+                  Bin<span className="text-eco-600">Snap</span>
                 </span>
               </div>
 

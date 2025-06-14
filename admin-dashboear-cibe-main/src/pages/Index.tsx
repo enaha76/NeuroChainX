@@ -126,7 +126,7 @@ const Index = () => {
                 <Recycle className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">EcoWatch</h1>
+                <h1 className="text-xl font-bold text-slate-900">Bin Snap</h1>
                 <p className="text-xs text-slate-500">
                   Waste Management Dashboard
                 </p>

@@ -48,33 +48,9 @@ const rewardTiers = [
 
 const availableRewards = [
   {
-    id: 1,
-    name: "Plant a Tree",
-    cost: 100,
-    description: "Fund a tree planting in your local area",
-    icon: "🌱",
-    category: "Environmental",
-  },
-  {
-    id: 2,
-    name: "Coffee Shop Voucher",
-    cost: 50,
-    description: "$5 voucher for eco-friendly coffee shops",
-    icon: "☕",
-    category: "Food & Drink",
-  },
-  {
-    id: 3,
-    name: "Reusable Water Bottle",
-    cost: 200,
-    description: "Premium stainless steel water bottle",
-    icon: "💧",
-    category: "Eco Products",
-  },
-  {
     id: 4,
     name: "City Cleanup Kit",
-    cost: 150,
+    cost: 50,
     description: "Complete kit for community cleanup events",
     icon: "🧹",
     category: "Tools",
